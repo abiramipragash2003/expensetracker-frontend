@@ -9,10 +9,15 @@ const addincome=document.getElementById("addincome")
 const addexpense=document.getElementById("addexpense")
 const viewreport=document.getElementById("viewreport")
 const logout=document.getElementById("logout")
+const section1=document.getElementById("section1")
 const section2=document.getElementById("section2")
 const section3=document.getElementById("section3")
 const section4=document.getElementById("section4")
+const section5=document.getElementById("section5")
+const section6=document.getElementById("section6")
+const navreport=document.getElementById("navreport")
 const dashboardmonth=document.getElementById("month")
+//const section6=document.getElementById("section6")
 
 // Create a new Date object
 var today = new Date();
@@ -86,12 +91,50 @@ function transactionslist(element)
 {
     const Transaction=document.createElement("div")
     Transaction.id="transaction"
+    const dateBox=document.createElement("div")
+    dateBox.id="dateBox"
+    const date=document.createElement("span")
+    const month=document.createElement("span")
+    const year=document.createElement("span")
+    dateArray=element.date.split("-")    //[2024,03,01]
+
+    if(dateArray[2].split("0")[0]=="")
+    {
+
+        date.innerText=dateArray[2].split("0")[1];
+    }
+    else
+    {
+        date.innerText=dateArray[2];
+    }
+
+    monthArray=["","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    if(dateArray[1].split("0")[0]=="")//03-->[ " ","3"]
+    {
+        
+        month.innerText=monthArray[dateArray[1].split("0")[1]];
+        
+    }
+    else
+    {
+       
+        month.innerText=monthArray[dateArray[1]];
+        
+    }
+    month.style.fontSize="small"
+    year.innerText=dateArray[0]
+    year.style.fontSize="small"
+    
     const categoryandname=document.createElement("div")
-    const category=document.createElement("p")
+    categoryandname.id="categoryandname"
+    const category=document.createElement("span")
     category.innerText="Category : "+element.category
-    const name=document.createElement("p")
+    const name=document.createElement("span")
     name.innerText="Name : "+element.name
+    // const viewdate=document.createElement("span")
+    // viewdate.innerText="Date :"+element.date
     const Cost=document.createElement("div")
+    Cost.style.marginLeft="auto"
     const cost=document.createElement("span")
     if(element.type=="expense")
     {
@@ -103,10 +146,9 @@ function transactionslist(element)
     }
     
     document.getElementById("transactionholder").appendChild(Transaction);
-    Transaction.appendChild(categoryandname);
-    categoryandname.appendChild(category);
-    categoryandname.appendChild(name);
-    Transaction.appendChild(Cost);
+    Transaction.append(dateBox,categoryandname,Cost);
+    dateBox.append(month,date,year)
+    categoryandname.append(category,name);
     Cost.appendChild(cost);
 }
 
@@ -122,7 +164,7 @@ function handleButtonClick(clickedElement, displaySection) {
     clickedElement.style.backgroundColor = "rgb(77, 142, 204)";
 
     // Hide all sections
-    [section2, section3, section4].forEach(section => {
+    [section2, section3, section4, section5,navreport].forEach(section => {
         section.style.display = "none";
     });
 
@@ -130,11 +172,32 @@ function handleButtonClick(clickedElement, displaySection) {
     displaySection.style.display = "inline";
 }
 
+
+
 // Event listeners
 dashboard.addEventListener('click', () => handleButtonClick(dashboard, section2));
 addincome.addEventListener('click', () => handleButtonClick(addincome, section3));
 addexpense.addEventListener('click', () => handleButtonClick(addexpense, section4));
-viewreport.addEventListener('click', () => handleButtonClick(viewreport, null)); // No section to display
+viewreport.addEventListener('click', () => {
+        
+        
+        [dashboard, addincome, addexpense].forEach(element => {
+            element.style.backgroundColor = "rgb(43, 42, 42)";
+        });
+
+        
+       
+        [section1,section2, section3, section4, section6].forEach(section => {
+            section.style.display = "none";
+        });
+
+        viewreport.style.backgroundColor="rgb(77, 142, 204)"
+
+        navreport.style.display="inline"
+
+        section5.style.display="inline"
+
+}); 
 
 
 // dashboard.addEventListener('click',()=>{
@@ -291,7 +354,7 @@ submitexpense.addEventListener("click",async (event)=>{
 
         setTimeout( ()=>{
             window.location.reload()
-        },10000)
+        },1000)
         }
         else
         {
@@ -305,4 +368,71 @@ submitexpense.addEventListener("click",async (event)=>{
             console.error(error)
         }
 })
+
+
+
+function transactionslist1(element)
+{
+    const Transaction=document.createElement("div")
+    Transaction.id="transaction1"
+    const dateBox=document.createElement("div")
+    dateBox.id="dateBox"
+    const date=document.createElement("span")
+    const month=document.createElement("span")
+    const year=document.createElement("span")
+    dateArray=element.date.split("-")    //[2024,03,01]
+
+    if(dateArray[2].split("0")[0]=="")
+    {
+
+        date.innerText=dateArray[2].split("0")[1];
+    }
+    else
+    {
+        date.innerText=dateArray[2];
+    }
+
+    monthArray=["","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    if(dateArray[1].split("0")[0]=="")//03-->[ " ","3"]
+    {
+        
+        month.innerText=monthArray[dateArray[1].split("0")[1]];
+        
+    }
+    else
+    {
+       
+        month.innerText=monthArray[dateArray[1]];
+        
+    }
+    month.style.fontSize="small"
+    year.innerText=dateArray[0]
+    year.style.fontSize="small"
+    
+    const categoryandname=document.createElement("div")
+    categoryandname.id="categoryandname"
+    const category=document.createElement("span")
+    category.innerText="Category : "+element.category
+    const name=document.createElement("span")
+    name.innerText="Name : "+element.name
+    // const viewdate=document.createElement("span")
+    // viewdate.innerText="Date :"+element.date
+    const Cost=document.createElement("div")
+    Cost.style.marginLeft="auto"
+    const cost=document.createElement("span")
+    if(element.type=="expense")
+    {
+        cost.innerHTML="-"+element.cost
+    }
+    else
+    {
+        cost.innerHTML=element.cost
+    }
+    
+    document.getElementById("transactionholder").appendChild(Transaction);
+    Transaction.append(dateBox,categoryandname,Cost);
+    dateBox.append(month,date,year)
+    categoryandname.append(category,name);
+    Cost.appendChild(cost);
+}
 

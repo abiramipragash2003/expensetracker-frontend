@@ -6,24 +6,52 @@
     <title>expensetracker</title>
     <link rel="stylesheet" href="./index.css">
 </head>
-<body style=" font-family:cursive;">
-    <!-- NAVIGATION BAR SECTION-->
-    <div id="section1" class="page" style="display: flex;flex-direction: row;">
-        <div style="height: 95vh; width: 300px; display: flex;flex-direction: column;padding: 15px;justify-content: space-between;">
+<body style=" font-family:cursive;margin: 0px;background-color:rgb(22, 22, 22);">
+    
+
+   
+    <div  class="page" style="display: flex;flex-direction: row;">
+
+         <!-- NAVIGATION BAR SECTION-->
+        <div id="section1" style=" width: 300px; display: flex;flex-direction: column;padding: 15px;justify-content: space-between;">
             <div style="display: flex;flex-direction: column;">
                 <h1 class="heading">Zuci Expense Tracker</h1>
                 <button class="btn" id="Dashboard" style="background-color: rgb(77, 142, 204);">Dashboard</button>
                 <button class="btn" id="addincome">Add Income</button>
                 <button class="btn" id="addexpense">Add Expense</button>
                 <button class="btn" id="viewreport">View Report</button>
+                <!-- <button class="btn" id="datereport" style="display: none;">View Report By Date</button>
+                <button class="btn" id="monthreport" style="display: none;">Monthly Report</button>
+                <button class="btn" id="yearreport" style="display: none;">Yearly Report</button>
+             -->
+
             </div>
             <div style="display: flex;flex-direction: column;">
                 <button class="btn" id="logout">Logout</button>
             </div>
         </div>
+    
+
+        <!-- navigation section2 -->
+        <div id="navreport" class="page" style="display: flex;flex-direction: row;display: none;">
+            <div style=" width: 300px; display: flex;flex-direction: column;padding: 15px;justify-content: space-between;">
+                <div style="display: flex;flex-direction: column;">
+                    <h1 class="heading">Zuci Expense Tracker</h1>
+                
+                    <button class="btn" id="viewreport" style="background-color: rgb(77, 142, 204);">View Report</button>
+                    <button class="btn" id="Dashboard1" >Dashboard</button>
+                    <button class="btn" id="datereport">View Report By Date</button>
+                    <button class="btn" id="monthreport" >Monthly Report</button>
+                    <button class="btn" id="yearreport">Yearly Report</button>
+                
+    
+                </div>
+                
+            </div>
+        </div>
 
         <!-- dashboard -->
-        <div id="section2" style="height: 95vh; width: 600px; padding: 15px;">
+        <div id="section2" style="height:fit-content; width: 600px; padding: 15px;">
             <div style="display: flex;flex-direction: row;gap: 20px;align-items: center">
                 <h1 class="heading">Dashboard</h1>
                 <button id="month" class="btn" style="height: 50px;background-color: rgb(77, 142, 204);"></button>
@@ -55,7 +83,7 @@
         </div>
 
         <!-- Add Income -->
-        <div id="section3" style="height: 95vh; width: 600px; padding: 15px; display:none">
+        <div id="section3" style="height:fit-content; width: 600px; padding: 15px; display:none">
             <h1 class="heading">Add Income</h1>
             <div style="height: 465px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color: rgb(43, 42, 42);padding: 10px;justify-content: center;
             align-items: center;">
@@ -81,7 +109,7 @@
         </div>
 
         <!--Add expense-->
-        <div id="section4" style="height: 95vh; width: 600px; padding: 15px;display: none;">
+        <div id="section4" style="height:fit-content; width: 600px; padding: 15px;display: none;">
             <h1 class="heading">Add Expense</h1>
             <div style="height: 465px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color: rgb(43, 42, 42);padding: 10px;justify-content: center;
             align-items: center;">
@@ -115,12 +143,48 @@
         
         
         </div>
+        <!-- view report section -->
+        <div id="section5" style="height:fit-content; width: 1000px; padding: 15px;display: none;">
+            <div style="height: 600px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color: rgb(43, 42, 42);padding: 10px;">
+            <div >
+                <div style="display: flex;flex-direction: row;gap: 20px;align-items: center;">
+                    <h1 class="heading" id="reporthead">Dashboard</h1>
+
+                    <button id="month" class="btn" style="height: 50px;background-color: rgb(77, 142, 204);"></button>
+                </div>
+                <div style="display: flex;flex-direction: row;gap: 20px;">
+                    <div class="container1" style="background-color: rgb(77, 142, 204);">
+                        <span style="margin-left: 5px;">Balance</span>
+                        <div class="info1"><span>Rs.</span><span id="balance">0</span></div>
+                    </div>
+                    <div class="container1">
+                        <span style="margin-left: 5px;">Income</span>
+                        <div class="info1"><span>Rs.</span><span id="income">0</span></div>
+                    </div>
+                    <div class="container1">
+                        <span style="margin-left: 5px;">Expense</span>
+                        <div class="info1"><span>Rs.</span><span id="expense">0</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div> 
+                <h2 class="heading">Transactions</h2>
+                <div style="height: 450px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color:rgb(22, 22, 22);" id="transactionholder" >
+                    <p id="errmsg" style="color: aliceblue;">No transactions</p>
+    
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 
         <!-- hi user -->
-        <div id="section5" style="height: 95vh; width: 400px; padding: 15px;">
+        <div id="section6" style="height:fit-content; width: 400px; padding: 15px;">
             <h1 class="heading">Hi User!</h1>
             <h2 class="heading">Recent Transactions</h2>
-            <div style="height: 465px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;" id="transactionholder">
+            <div style="height: 450px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;" id="transactionholder">
                 <p id="errmsg" style="color: aliceblue;">No transactions</p> 
                 <!-- // <div id="transaction">
                     //     <div> 
@@ -135,7 +199,9 @@
 
             </div>
         </div>
+    
     </div>
+
     <script src="./index.js"></script>
 </body>
 </html>
