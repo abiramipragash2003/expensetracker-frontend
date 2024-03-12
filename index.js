@@ -17,15 +17,14 @@ const section5=document.getElementById("section5")
 const section6=document.getElementById("section6")
 const navreport=document.getElementById("navreport")
 const dashboardmonth=document.getElementById("month")
+
 //const section6=document.getElementById("section6")
 
 // Create a new Date object
 var today = new Date();
-
 // Format the date to YYYY-MM-DD from ISO STRING --- > YYYY-MM-DDTHH:MM:SS.sssZ
 var formattedDate = today.toISOString().slice(0,10);
 var dateObject = new Date(formattedDate);
-
 // Get the month name in the "long" format (e.g., "January")
 var monthName = dateObject.toLocaleDateString('en-US', { month: 'long' });
 dashboardmonth.innerText=monthName
@@ -33,52 +32,34 @@ document.getElementById("expensedate").setAttribute("max", formattedDate);
 document.getElementById("incomedate").setAttribute("max", formattedDate);
 
 const url=`http://localhost:9090/expensetracker`
-fetchData()
+fetchData(`${url}/month/${formattedDate}`) // function call
 
 //to fetch total income,expense,balance,transactionlist
-async function fetchData()
+async function fetchData(apiUrl)
  {
-    const apiUrl = `${url}/month/${formattedDate}`
 
     try {
         const response = await fetch(apiUrl);
 
-        if (!response.ok) {
+        if (!response.ok)
+        {
             throw new Error('Failed to fetch data');
         }
         const data = await response.json();
-
-
         //to show the total income,expense,balance at the dashboard
         balance.innerText=data.balance;
         income.innerText=data.totalIncome;
         expense.innerText=data.totalExpense;
-
-
         //to show the transactions list
         console.log(data)
         if(typeof data==="object" && data.expenseTracker!=null)
         {
             document.getElementById("transactionholder").innerHTML = ""; // clear no transactions
-            if(data.expenseTracker.length<=5)
-            {
-                data.expenseTracker.forEach(element=>
-                    {
-                        transactionslist(element)
-
-                    })
-            }
-            else
-            {
-            
-            for(i=0;i<5;i++)
-            {
-                transactionslist(data.expenseTracker[i])
-            }
+            data.expenseTracker.forEach(element=>
+                {
+                    transactionslist(element)
+                })
         }
-        }
-       
-       
     }
     catch(error)
     {
@@ -86,7 +67,38 @@ async function fetchData()
     }
 }
 
-// To display the transcations in the Hi User Section
+
+async function fetchReportData(apiUrl)
+ {
+
+    try {
+        const response = await fetch(apiUrl);
+
+        if (!response.ok)
+        {
+            throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        //to show the total income,expense,balance at the dashboard
+        reportbalance.innerText=data.balance;
+        reportincome.innerText=data.totalIncome;
+        reportexpense.innerText=data.totalExpense;
+        //to show the transactions list
+        console.log(data)
+        if(typeof data==="object" && data.expenseTracker!=null)
+        {
+            document.getElementById("reporttransactionholder").innerHTML = ""; // clear no transactions
+            data.expenseTracker.forEach(element=>
+                {
+                    reporttransactionslist(element)
+                })
+        }
+    }
+    catch(error)
+    {
+        console.error(error)
+    }
+}
 function transactionslist(element)
 {
     const Transaction=document.createElement("div")
@@ -96,11 +108,10 @@ function transactionslist(element)
     const date=document.createElement("span")
     const month=document.createElement("span")
     const year=document.createElement("span")
-    dateArray=element.date.split("-")    //[2024,03,01]
 
+    dateArray=element.date.split("-")    //[2024,03,01]
     if(dateArray[2].split("0")[0]=="")
     {
-
         date.innerText=dateArray[2].split("0")[1];
     }
     else
@@ -111,20 +122,15 @@ function transactionslist(element)
     monthArray=["","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     if(dateArray[1].split("0")[0]=="")//03-->[ " ","3"]
     {
-        
-        month.innerText=monthArray[dateArray[1].split("0")[1]];
-        
+        month.innerText=monthArray[dateArray[1].split("0")[1]];    
     }
     else
     {
-       
         month.innerText=monthArray[dateArray[1]];
-        
     }
     month.style.fontSize="small"
     year.innerText=dateArray[0]
     year.style.fontSize="small"
-    
     const categoryandname=document.createElement("div")
     categoryandname.id="categoryandname"
     const category=document.createElement("span")
@@ -145,6 +151,7 @@ function transactionslist(element)
         cost.innerHTML=element.cost
     }
     
+
     document.getElementById("transactionholder").appendChild(Transaction);
     Transaction.append(dateBox,categoryandname,Cost);
     dateBox.append(month,date,year)
@@ -152,8 +159,72 @@ function transactionslist(element)
     Cost.appendChild(cost);
 }
 
+
+
+// To display the transcations in the Hi User Section
+function reporttransactionslist(element)
+{
+    const Transaction=document.createElement("div")
+    Transaction.id="reporttransaction"
+    const dateBox=document.createElement("div")
+    dateBox.id="dateBox"
+    const date=document.createElement("span")
+    const month=document.createElement("span")
+    const year=document.createElement("span")
+
+    dateArray=element.date.split("-")    //[2024,03,01]
+    if(dateArray[2].split("0")[0]=="")
+    {
+        date.innerText=dateArray[2].split("0")[1];
+    }
+    else
+    {
+        date.innerText=dateArray[2];
+    }
+
+    monthArray=["","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    if(dateArray[1].split("0")[0]=="")//03-->[ " ","3"]
+    {
+        month.innerText=monthArray[dateArray[1].split("0")[1]];    
+    }
+    else
+    {
+        month.innerText=monthArray[dateArray[1]];
+    }
+    month.style.fontSize="small"
+    year.innerText=dateArray[0]
+    year.style.fontSize="small"
+    const categoryandname=document.createElement("div")
+    categoryandname.id="categoryandname"
+    const category=document.createElement("span")
+    category.innerText="Category : "+element.category
+    const name=document.createElement("span")
+    name.innerText="Name : "+element.name
+    // const viewdate=document.createElement("span")
+    // viewdate.innerText="Date :"+element.date
+    const Cost=document.createElement("div")
+    Cost.style.marginLeft="auto"
+    const cost=document.createElement("span")
+    if(element.type=="expense")
+    {
+        cost.innerHTML="-"+element.cost
+    }
+    else
+    {
+        cost.innerHTML=element.cost
+    }
+    
+
+    document.getElementById("reporttransactionholder").appendChild(Transaction);
+    Transaction.append(dateBox,categoryandname,Cost);
+    dateBox.append(month,date,year)
+    categoryandname.append(category,name);
+    Cost.appendChild(cost);
+}
+
 // Function to handle click events
-function handleButtonClick(clickedElement, displaySection) {
+function handleButtonClick(clickedElement, displaySection)
+{
 
     // Reset all background colors
     [dashboard, addincome, addexpense, viewreport].forEach(element => {
@@ -179,131 +250,110 @@ dashboard.addEventListener('click', () => handleButtonClick(dashboard, section2)
 addincome.addEventListener('click', () => handleButtonClick(addincome, section3));
 addexpense.addEventListener('click', () => handleButtonClick(addexpense, section4));
 viewreport.addEventListener('click', () => {
-        
-        
         [dashboard, addincome, addexpense].forEach(element => {
             element.style.backgroundColor = "rgb(43, 42, 42)";
         });
 
-        
-       
         [section1,section2, section3, section4, section6].forEach(section => {
             section.style.display = "none";
         });
 
         viewreport.style.backgroundColor="rgb(77, 142, 204)"
-
         navreport.style.display="inline"
-
         section5.style.display="inline"
+        const monthdropdown=document.getElementById("reportmonth")
+        const months = [
+            { name: "Jan", value: "01" },
+            { name: "Feb", value: "02" },
+            { name: "Mar", value: "03" },
+            { name: "Apr", value: "04" },
+            { name: "May", value: "05" },
+            { name: "June", value: "06" },
+            { name: "July", value: "07" },
+            { name: "Aug", value: "08" },
+            { name: "Sept", value: "09" },
+            { name: "Oct", value: "10" },
+            { name: "Nov", value: "11" },
+            { name: "Dec", value: "12" }
+        ];
+        months.forEach(month => {
+            const option = document.createElement("option");
+            option.value = month.value;
+            option.textContent = month.name;
+            monthdropdown.appendChild(option);
+        });
 
+        monthdropdown.addEventListener("change",()=>
+        {
+            const selectedmonth=monthdropdown.value;
+            console.log(selectedmonth)
+            fetchReportData(`${url}/month/2024-${selectedmonth}-01`) 
+        })
+        
 }); 
 
 
-// dashboard.addEventListener('click',()=>{
-   
-//     dashboard.style.backgroundColor="rgb(77, 142, 204)"
-//     addincome.style.backgroundColor="rgb(43, 42, 42)"
-//     section2.style.display="inline"
-//     section3.style.display="none"
-//     section4.style.display="none"
-//     addexpense.style.backgroundColor="rgb(43, 42, 42) "
-//     viewreport.style.backgroundColor="rgb(43, 42, 42)"
-// })
-
-// addincome.addEventListener('click',()=>{
-//     addincome.style.backgroundColor="rgb(77, 142, 204)"
-//     dashboard.style.backgroundColor="rgb(43, 42, 42)"
-//     section2.style.display="none"
-//     section3.style.display="inline"
-//     section4.style.display="none"
-//     addexpense.style.backgroundColor="rgb(43, 42, 42)"
-//     viewreport.style.backgroundColor="rgb(43, 42, 42)"
-// })
-
-// addexpense.addEventListener('click',()=>{
-//     addexpense.style.backgroundColor="rgb(77, 142, 204)"
-//     dashboard.style.backgroundColor="rgb(43, 42, 42)"
-//     section2.style.display="none"
-//     section4.style.display="inline"
-//     section3.style.display="none"
-//     viewreport.style.backgroundColor="rgb(43, 42, 42)"
-//     addincome.style.backgroundColor="rgb(43, 42, 42)"
-
-    
-    
-// })
-
-
-// viewreport.addEventListener('click',()=>{
-//     viewreport.style.backgroundColor="rgb(77, 142, 204)"
-//     dashboard.style.backgroundColor="rgb(43, 42, 42)"
-//     addincome.style.backgroundColor="rgb(43, 42, 42)"
-//     addexpense.style.backgroundColor="rgb(43, 42, 42)"
-    
-// })
-
 const submitincome=document.getElementById("submitincome")
-submitincome.addEventListener("click",async (event)=>{
+submitincome.addEventListener("click",async(event)=>
+{
     event.preventDefault();
     const incomecategory=document.getElementById("incomecategory")
     const incomenote=document.getElementById("incomenote")
     const incomecost=document.getElementById("incomecost")
     const incomedate=document.getElementById("incomedate")
     // Check if any required field is empty
-    if (incomecategory.value === "Choose Category"  || incomecost.value === "" || incomedate.value === "") {
+    if (incomecategory.value === "Choose Category"  || incomecost.value === "" || incomedate.value === "")
+    {
         alert("Please fill in all required fields.");
         return;
     }
-    if (incomecost.value <= 0 || isNaN(incomecost.value)) {
+    if (incomecost.value <= 0 || isNaN(incomecost.value))
+    {
         alert("Cost must be a positive number.");
         return;
     }
-    
-    const incomedata={
+    const incomedata=
+    {
         userName:"abi",
         type:"income",
         incomeCategory:incomecategory.value,
         incomeName:incomenote.value,
         cost:incomecost.value,
         incomeDate:incomedate.value
-      
-
     }
    
+    //posting to the backend
     try 
     {
-        const checkResponse = await fetch(`${url}/income`, {
+        const checkResponse = await fetch(`${url}/income`,
+        {
             method: 'POST',
-            headers: {
+            headers: 
+            {
                 'Content-Type': 'application/json',
-               
             },
             body: JSON.stringify(incomedata)
-            
         });   
-        if(checkResponse.ok)
-        {
-        //fetchData()
-        
-        fetchData()
-        submitincome.innerText="success"
-        submitincome.style.backgroundColor="black"
-        setTimeout( ()=>{
-            window.location.reload()
-        },1500)
-        }
-        else
-        {
-        submitincome.innerText="Not success"
-        submitincome.style.backgroundColor="red"
-        }    
-        }
-        catch(error)
-        {
-            console.error(error)
-        }
-        
+            if(checkResponse.ok)
+            {
+                fetchData()
+                submitincome.innerText="success"
+                submitincome.style.backgroundColor="black"
+                setTimeout( ()=>
+                {
+                    window.location.reload()
+                },1500)
+            }
+            else
+            {
+                submitincome.innerText="Not success"
+                submitincome.style.backgroundColor="red"
+            }    
+    }
+    catch(error)
+    {
+        console.error(error)
+    }    
 })
 
 const submitexpense=document.getElementById("submitexpense")

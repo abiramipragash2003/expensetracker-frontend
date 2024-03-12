@@ -14,7 +14,7 @@
 .container1
 {
     height:50px;
-    width:145px;
+    width:110px;
     background-color: rgb(22, 22, 22);
     border-radius: 20px;
     padding: 15px;
@@ -24,6 +24,17 @@
     /* border: 5px black solid; */
 
 }
+
+
+/* Customize scrollbar appearance (optional) */
+
+
+#transactionholderreport::-webkit-scrollbar {
+    -ms-overflow-style: none;
+    width: 0; /* Hide scrollbar in webkit browsers */
+}
+
+
 
 #piechart
 {
@@ -96,6 +107,31 @@
     align-items: center;
     justify-content: flex-start;
     gap:15px
+}
+
+#reporttransaction
+{
+    border-radius: 15px;
+    background-color:rgb(43, 42, 42);
+    height: 50px;
+    margin-top: 10px;
+    /* margin-left: 15px;  */
+    margin-left: auto;
+    margin-right: auto;
+    color: aliceblue;
+    padding: 15px;
+    width: 90%; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap:15px
+    
+}
+
+#reporttransactionholder
+{
+    background-color:rgb(43, 42, 42);
 }
 
 .inputfields
