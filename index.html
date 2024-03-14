@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body style=" font-family:cursive;margin: 0px;background-color:rgb(22, 22, 22);">
-    <div  class="page" style="display: flex;flex-direction: row;">
+    <div class="page" style="display: flex;flex-direction: row;">
         <!-- NAVIGATION BAR SECTION-->
         <section id="section1" style=" width: 300px; display: flex;flex-direction: column;padding: 15px;justify-content: space-between;">
             <div style="display: flex;flex-direction: column;">
                 <h1 class="heading">Zuci Expense Tracker</h1>
                 <button class="btn" id="Dashboard" style="background-color: rgb(77, 142, 204);">Dashboard</button>
-                <button class="btn" id="addincome">Add Income</button>
-                <button class="btn" id="addexpense">Add Expense</button>
-                <button class="btn" id="viewreport">View Report</button>
+                <button class="btn" id="addincome" style="background-color: rgb(43, 42, 42);">Add Income</button>
+                <button class="btn" id="addexpense" style="background-color: rgb(43, 42, 42);">Add Expense</button>
+                <button class="btn" id="viewreport" style="background-color: rgb(43, 42, 42);">View Report</button>
             </div>
             <div style="display: flex;flex-direction: column;">
                 <button class="btn" id="logout">Logout</button>
@@ -27,8 +27,8 @@
             <div style=" width: 300px; display: flex;flex-direction: column;padding: 15px;justify-content: space-between;">
                 <div style="display: flex;flex-direction: column;">
                     <h1 class="heading">Zuci Expense Tracker</h1>
-                    <button class="btn" id="viewreport" style="background-color: rgb(77, 142, 204);">View Report</button>
-                    <button class="btn" id="Dashboard1" >Dashboard</button>
+                    <button class="btn" id="viewreportnew" style="background-color: rgb(77, 142, 204);">View Report</button>
+                    <button class="btn" id="Dashboard1">Dashboard</button>
                     <button class="btn" id="datereport">View Report By Date</button>
                     <button class="btn" id="yearreport">Yearly Report</button>
                 </div>
@@ -36,10 +36,10 @@
         </section>
 
         <!-- dashboard -->
-        <section id="section2" style="height:fit-content; width: 600px; padding: 15px;">
+        <section id="section2" style="height: fit-content; width: 600px; padding: 15px; display: inline;">
             <div style="display: flex;flex-direction: row;gap: 20px;align-items: center">
                 <h1 class="heading">Dashboard</h1>
-                <button id="month" class="btn" style="height: 50px;background-color: rgb(77, 142, 204);"></button>
+                <button id="month" class="btn" style="height: 50px;background-color: rgb(77, 142, 204);">March</button>
             </div>
             <div style="display: flex;flex-direction: row;gap: 20px;">
                 <div class="container" style="background-color: rgb(77, 142, 204);">
@@ -71,32 +71,32 @@
         <section id="section3" style="height:fit-content; width: 600px; padding: 15px; display:none">
             <h1 class="heading">Add Income</h1>
             <div style="height: 465px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color: rgb(43, 42, 42);padding: 10px;justify-content: center;align-items: center;">
-                <div style="width: 80%;height:100%;display: flex;flex-direction: column;gap: 10px;font-size:x-large;color: aliceblue;" >
+                <div style="width: 80%;height:100%;display: flex;flex-direction: column;gap: 10px;font-size:x-large;color: aliceblue;">
                     <label for="category">Category </label>
-                    <select id="incomecategory" class="inputfields" required>
-                        <option value="Choose Category" selected>Choose Category</option>
+                    <select id="incomecategory" class="inputfields" required="">
+                        <option value="Choose Category" selected="">Choose Category</option>
                         <option value="Salary">Salary</option>
                         <option value="Investment">Investment</option>
                         <option value="Awards">Awards</option>
                         <option value="Others">Others</option>
                     </select>
-                    <label for="note">Note </label><input type="text" id="incomenote" name="note"class="inputfields">
-                    <label for="note">Cost </label><input type="number" min="0" id="incomecost" name="cost"class="inputfields" required>
-                    <label for="date">Date </label><input type="date" id="incomedate" name="date"class="inputfields" required>
+                    <label for="note">Note </label><input type="text" id="incomenote" name="note" class="inputfields">
+                    <label for="note">Cost </label><input type="number" min="0" id="incomecost" name="cost" class="inputfields" required="">
+                    <label for="date">Date </label><input type="date" id="incomedate" name="date" class="inputfields" required="" max="2024-03-13">
                     <button id="submitincome" class="btn" style="background-color:rgb(77, 142, 204) ;width: 30%;align-items: center;align-self: center;">Submit</button>
                 </div>
             </div>
         </section>
 
         <!--Add expense-->
-        <section id="section4" style="height:fit-content; width: 600px; padding: 15px;display: none;">
+        <section id="section4" style="height: fit-content; width: 600px; padding: 15px; display: none;">
             <h1 class="heading">Add Expense</h1>
             <div style="height: 465px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color: rgb(43, 42, 42);padding: 10px;justify-content: center;
             align-items: center;">
-                <div style="width: 80%;height:100%;display: flex;flex-direction: column;gap: 10px;font-size:x-large;color: aliceblue;" >
+                <div style="width: 80%;height:100%;display: flex;flex-direction: column;gap: 10px;font-size:x-large;color: aliceblue;">
                     <label for="category">Category </label>
-                    <select id="expensecategory" class="inputfields" required>
-                        <option value="Choose Category" selected>Choose Category</option>
+                    <select id="expensecategory" class="inputfields" required="">
+                        <option value="Choose Category" selected="">Choose Category</option>
                         <option value="Shopping">Shopping</option>
                         <option value="Food">Food</option>
                         <option value="Telephone">Telephone</option>
@@ -111,11 +111,10 @@
                         <option value="Gifts">Gifts</option>
                         <option value="Others">Others</option>
                     </select>
-                    <label for="note">Note </label><input type="text" id="expensenote" name="note"class="inputfields" >
-                    <label for="note">Cost </label><input type="number" min=0 id="expensecost" name="note"class="inputfields" required>
-                    <label for="date">Date </label><input type="date" id="expensedate" name="date"class="inputfields" required>
-                    <button id="submitexpense" class="btn" style="background-color:rgb(77, 142, 204) ;width: 30%;align-items: center;align-self:center;">Submit<button>
-                </div>
+                    <label for="note">Note </label><input type="text" id="expensenote" name="note" class="inputfields">
+                    <label for="note">Cost </label><input type="number" min="0" id="expensecost" name="note" class="inputfields" required="">
+                    <label for="date">Date </label><input type="date" id="expensedate" name="date" class="inputfields" required="" max="2024-03-13">
+                    <button id="submitexpense" class="btn" style="background-color:rgb(77, 142, 204) ;width: 30%;align-items: center;align-self:center;">Submit</button></div>
             </div>
         </section>
 
@@ -123,14 +122,15 @@
         <section id="section5" style="height:fit-content; width: 95%; padding: 15px;display: none;flex-direction: row;">
             <div style="height: 645px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color: rgb(43, 42, 42);padding: 10px;">
                 <div>
-                    <div style="display: flex;flex-direction: row;gap: 20px;align-items: center;">
+                    <div id="reportmain" style="display: flex;flex-direction: row;gap: 20px;align-items: center;">
                         <h1 class="heading" id="reporthead">Monthly Report </h1>
+                        
                         <!-- <input type="month" id="month" class="btn" style="height: 50px;background-color: rgb(77, 142, 204);"></input> -->
                         <label for="month"></label>
                         <select id="reportmonth" name="month" class="btn" style="height: 50px;background-color: rgb(77, 142, 204);">
-                            <!-- <option value="01">Jan</option>
+                            <option value="01">Jan</option>
                             <option value="02">Feb</option>
-                            <option value="03">Mar</option>
+                            <option value="03" selected="">Mar</option>
                             <option value="04">Apr</option>
                             <option value="05">May</option>
                             <option value="06">June</option>
@@ -139,7 +139,7 @@
                             <option value="09">Sept</option>
                             <option value="10">Oct</option>
                             <option value="11">Nov</option>
-                            <option value="12">Dec</option> -->
+                            <option value="12">Dec</option>
                         </select>
 
                     </div>
@@ -169,21 +169,13 @@
 
         <!-- hi user -->
         <section id="section6" style="height:fit-content; width: 400px; padding: 15px;">
-            <h1 class="heading">Hi User!</h1>
+            <h1 class="heading">Hi <span id="user">USER</span>.!</h1>
+            
             <h2 class="heading">Recent Transactions</h2>
-            <div style="height: 450px;border-radius: 15px;width: 100%;display: flex;flex-direction: column;overflow-y: auto;" id="transactionholder">
-                <p id="errmsg" style="color: aliceblue;">No transactions</p> 
-                <!-- <div id="transaction">
-                    <div>
-                        <p style="margin:3px;" id="category">food</p>
-                        <p style="margin:3px;" id="name">arvind cafe</p>
-                    </div>
-                    <div>
-                        <span id="cost">1000</span>
-                    </div>
-                </div> -->
-            </div>
-        </section>
+            <div style="height: 450px;border-radius: 15px;width: 100%;display: flex;flex-direction: column;overflow-y: auto;" id="transactionholder"> 
+                
+        
+        </div></section>
     </div>
     <script src="./index.js"></script>
 </body>

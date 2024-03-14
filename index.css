@@ -128,6 +128,18 @@
     gap:15px
     
 }
+#reporttransactionholder::-webkit-scrollbar {
+    width: 5px;
+    background-color:aliceblue ;
+    border-radius: 5px;
+
+}
+#transactionholder::-webkit-scrollbar {
+    width: 3px;
+    background-color: rgb(43, 42, 42);
+    border-radius: 5px;
+
+}
 
 #reporttransactionholder
 {
@@ -165,4 +177,32 @@
     justify-content: center;
     width: 55px;
     border-radius: 10px;
+}
+#buttondate
+{
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color:rgb(77, 142, 204);
+    color: aliceblue;
+    font-size: large;
+    font-family:cursive;
+    border: none;
+}
+
+#buttonyear
+{
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color:rgb(77, 142, 204);
+    color: aliceblue;
+    font-size: large;
+    font-family:cursive;
+    border: none;
+}
+#reportnotransaction
+{
+    color: aliceblue;
+    margin: auto;
 }

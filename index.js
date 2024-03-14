@@ -17,7 +17,13 @@ const section5=document.getElementById("section5")
 const section6=document.getElementById("section6")
 const navreport=document.getElementById("navreport")
 const dashboardmonth=document.getElementById("month")
-
+const dashboardreport=document.getElementById("Dashboard1")
+const datereport=document.getElementById("datereport")
+const yearreport=document.getElementById("yearreport")
+const viewreportnew=document.getElementById("viewreportnew")
+const reporthead=document.getElementById("reporthead")
+const buttondate=document.createElement("input")
+const buttonyear=document.createElement("input")
 //const section6=document.getElementById("section6")
 
 // Create a new Date object
@@ -92,6 +98,14 @@ async function fetchReportData(apiUrl)
                 {
                     reporttransactionslist(element)
                 })
+        }
+        else{
+            document.getElementById("reporttransactionholder").innerHTML = "";
+            const notransactionmsg=document.createElement("p")
+            notransactionmsg.id="reportnotransaction"
+            notransactionmsg.innerText="No Transactions"
+            document.getElementById("reporttransactionholder").append(notransactionmsg)
+
         }
     }
     catch(error)
@@ -250,6 +264,7 @@ dashboard.addEventListener('click', () => handleButtonClick(dashboard, section2)
 addincome.addEventListener('click', () => handleButtonClick(addincome, section3));
 addexpense.addEventListener('click', () => handleButtonClick(addexpense, section4));
 viewreport.addEventListener('click', () => {
+        
         [dashboard, addincome, addexpense].forEach(element => {
             element.style.backgroundColor = "rgb(43, 42, 42)";
         });
@@ -261,36 +276,128 @@ viewreport.addEventListener('click', () => {
         viewreport.style.backgroundColor="rgb(77, 142, 204)"
         navreport.style.display="inline"
         section5.style.display="inline"
+
         const monthdropdown=document.getElementById("reportmonth")
-        const months = [
-            { name: "Jan", value: "01" },
-            { name: "Feb", value: "02" },
-            { name: "Mar", value: "03" },
-            { name: "Apr", value: "04" },
-            { name: "May", value: "05" },
-            { name: "June", value: "06" },
-            { name: "July", value: "07" },
-            { name: "Aug", value: "08" },
-            { name: "Sept", value: "09" },
-            { name: "Oct", value: "10" },
-            { name: "Nov", value: "11" },
-            { name: "Dec", value: "12" }
-        ];
-        months.forEach(month => {
-            const option = document.createElement("option");
-            option.value = month.value;
-            option.textContent = month.name;
-            monthdropdown.appendChild(option);
-        });
+        // const months = [
+        //     { name: "Jan", value: "01" },
+        //     { name: "Feb", value: "02" },
+        //     { name: "Mar", value: "03" },
+        //     { name: "Apr", value: "04" },
+        //     { name: "May", value: "05" },
+        //     { name: "June", value: "06" },
+        //     { name: "July", value: "07" },
+        //     { name: "Aug", value: "08" },
+        //     { name: "Sept", value: "09" },
+        //     { name: "Oct", value: "10" },
+        //     { name: "Nov", value: "11" },
+        //     { name: "Dec", value: "12" }
+        // ];
+        // months.forEach(month => {
+        //     const option = document.createElement("option");
+        //     option.value = month.value;
+        //     option.textContent = month.name;
+
+        //     monthdropdown.appendChild(option);
+        // });
+        const selectmonth=monthdropdown.value;
+        
+        fetchReportData(`${url}/month/2024-${selectmonth}-01`) 
 
         monthdropdown.addEventListener("change",()=>
         {
+            document.getElementById("reporttransactionholder").innerHTML = "";
             const selectedmonth=monthdropdown.value;
             console.log(selectedmonth)
             fetchReportData(`${url}/month/2024-${selectedmonth}-01`) 
         })
         
 }); 
+
+
+datereport.addEventListener('click', () => {
+        
+    [dashboard,yearreport,viewreportnew].forEach(element => {
+        element.style.backgroundColor = "rgb(43, 42, 42)";
+    });
+
+    [section1,section2, section3, section4, section6].forEach(section => {
+        section.style.display = "none";
+    });
+
+    datereport.style.backgroundColor="rgb(77, 142, 204)"
+    navreport.style.display="inline"
+    section5.style.display="inline"
+    reporthead.innerText="View For Date"
+    reportmonth.style.display="none"
+    buttonyear.style.display="none"
+    buttondate.style.display="block"
+    buttondate.id="buttondate"
+    buttondate.type = "date"; 
+    buttondate.style.backgroundColor = "rgb(77, 142, 204)";
+    buttondate.max = formattedDate;
+    buttondate.value = formattedDate
+    document.getElementById("reportmain").appendChild(buttondate)
+    document.getElementById("reporttransactionholder").innerHTML = "";
+    fetchReportData(`${url}/date/${formattedDate}`) 
+    
+    buttondate.addEventListener("change",()=>
+    {
+        const dateentered=buttondate.value
+        document.getElementById("reporttransactionholder").innerHTML = "";
+        fetchReportData(`${url}/date/${dateentered}`) 
+    })
+    
+}); 
+
+yearreport.addEventListener('click', () => {
+
+    //buttondate.style.display="none"
+        
+    [dashboard,datereport,viewreportnew].forEach(element => {
+        element.style.backgroundColor = "rgb(43, 42, 42)";
+    });
+
+    [section1,section2, section3, section4, section6].forEach(section => {
+        section.style.display = "none";
+    });
+
+    yearreport.style.backgroundColor="rgb(77, 142, 204)"
+    navreport.style.display="inline"
+    section5.style.display="inline"
+    reporthead.innerText="Yearly Report"
+    reportmonth.style.display="none"
+    buttondate.style.display="none"
+    buttonyear.style.display="block"
+    buttonyear.type = "month"; 
+    buttonyear.id = "buttonyear"
+    
+    buttonyear.style.backgroundColor = "rgb(77, 142, 204)";
+    var formattedyear=formattedDate.split("-")
+    formattedyear=`${formattedyear[0]}-${formattedyear[1]}`
+    buttonyear.max = formattedyear;
+    buttonyear.value = formattedyear
+
+    console.log(buttonyear.value)
+    document.getElementById("reportmain").appendChild(buttonyear)
+
+    fetchReportData(`${url}/year/${formattedDate}`) 
+
+    buttonyear.addEventListener("change",()=>
+    {
+        const yearentered=buttonyear.value
+        
+        document.getElementById("reporttransactionholder").innerHTML = "";
+        console.log(`${yearentered}-01`)
+        fetchReportData(`${url}/year/${yearentered}-01`) 
+    })
+    
+});
+
+dashboardreport.addEventListener('click',()=>
+{
+    window.location.reload();
+})
+
 
 
 const submitincome=document.getElementById("submitincome")
