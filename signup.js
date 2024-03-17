@@ -1,46 +1,44 @@
-const submit=document.getElementById("submitsignup").value;
-const username=document.getElementById("username").value;
-const password=document.getElementById("password").value;
-const mailid=document.getElementById("mailid").value;
-const mobileno=document.getElementById("mobileno").value;
-// const url=`http://localhost:9090/auth`
-submitsignup.addEventListener('click',async(event)=>
-{
+const submitsignup = document.getElementById("submitsignup");
+const url = "http://localhost:9090/auth"
+submitsignup.addEventListener('click', async (event) => {
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const mailid = document.getElementById("mailid").value;
+    const mobileno = document.getElementById("mobileno").value;
     event.preventDefault()
-    const register=
+    const signupdata =
     {
-        "username":username,
-        "userPassword":password,
-        "userMailId":mailid,
-        "userMobileNumber":mobileno
+        "username": username,
+        "userPassword": password,
+        "userMailId": mailid,
+        "userMobileNumber": mobileno
     }
-    try 
-    {
-        const checkResponse = await fetch(`http://localhost:9090/auth/signup`,
-        {
-            method: 'POST',
-            headers: 
+    console.log(signupdata)
+    try {
+        const checkResponse = await fetch(`${url}/signup`,
             {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(register)
-        });   
-            if(checkResponse.ok)
-            {
-                
-                submitsignup.innerText="success"
-                submitsignup.style.backgroundColor="black"
-                window.location.href = "login.html";
-                
-            }
-            else
-            {
-                submitsignup.innerText="Not success"
-                submitsignup.style.backgroundColor="red"
-            }    
+                method: 'POST',
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(signupdata)
+            });
+        if (checkResponse.ok) {
+
+            submitsignup.innerText = "success"
+            submitsignup.style.backgroundColor = "black"
+            window.location.href = "login.html";
+
+
+        }
+        else {
+            submitsignup.innerText = "Username already Exists"
+            submitsignup.style.backgroundColor = "red"
+        }
     }
-    catch(error)
-    {
+    catch (error) {
         console.error(error)
-    } 
+    }
 })

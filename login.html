@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
 </head>
-<body style="background-color:rgb(27, 26, 26) ;">
-    <div style="display: flex;flex-direction: row;justify-content: space-around;">
+
+<body style="background-color:rgb(27, 26, 26) ;font-family: cursive;">
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
     <section id="section3" style="height:fit-content; width: 600px; padding: 15px;align-items: center;">
-        <h1 class="heading" style="color:aliceblue;margin-left: 100px;">Zuci Expense Tracker - Login</h1>
-        <div style="height: 265px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color: rgb(43, 42, 42);padding: 10px;justify-content: center;">
-            <div style="width: 80%;height:100%;margin-left: 50px;display: flex;flex-direction: column;gap: 10px;font-size:x-large;color: aliceblue;">
-                
-                <label for="username">Enter Your Username</label><input type="text" id="username" name="" class="inputfields">
-                <label for="password">Enter Your Password</label><input type="password" id="password" name="password" class="inputfields" required="">
-                <button id="submitlogin" class="btn" style="background-color:rgb(77, 142, 204) ;width: 30%;align-items: center;align-self: center;">Submit</button>
-            </div>
+      <div style="display: flex;flex-direction: row;justify-content: space-between;
+      align-items: center;">
+        <h1 class="heading" style="color:aliceblue;">Zuci Expense Tracker - Login</h1>
+        <button class="btn" id="signupbutton">Sign Up Here</button>
+      </div>
+      <div
+        style="height: 265px;border-radius: 15px;width: 98%;display: flex;flex-direction: column;background-color: rgb(43, 42, 42);padding: 10px;justify-content: center;">
+        <div
+          style="width: 80%;height:100%;margin-left: 50px;display: flex;flex-direction: column;gap: 10px;font-size:x-large;color: aliceblue;">
+
+          <label for="username">Enter Your Username</label><input type="text" id="username" name="" class="inputfields">
+          <label for="password">Enter Your Password</label><input type="password" id="password" name="password"
+            class="inputfields" required="">
+          <button id="submitlogin" class="btn"
+            style="background-color:rgb(77, 142, 204) ;width: 30%;align-items: center;align-self: center;">Submit</button>
         </div>
+      </div>
     </section>
-    </div>
-    <script src="./login.js"></script>   
+  </div>
+  <script src="./login.js"></script>
 </body>
+
 </html>
