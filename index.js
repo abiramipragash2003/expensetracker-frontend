@@ -52,7 +52,6 @@ function decodeToken(token) {
 }
 
 
-
 const url = `http://localhost:9090/expensetracker`
 fetchData(`${url}/month/${formattedDate}`) // function call
 

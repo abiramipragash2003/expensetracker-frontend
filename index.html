@@ -66,9 +66,13 @@
                     <button class="btn1" id="expense">Expense</button>
                     <button class="btn1" id="income">Income</button>
                 </div>
-                <div id="piechart" style="display: none;">
+                <svg id="pieChart" width="400" height="400">
+                    <g transform="translate(200,200)">
+                      <!-- Pie chart slices will be added here -->
+                    </g>
+                </svg>
 
-                </div>
+             
             </div>
         </section>
 
@@ -105,6 +109,7 @@
             align-items: center;">
                 <div
                     style="width: 80%;height:100%;display: flex;flex-direction: column;gap: 10px;font-size:x-large;color: aliceblue;">
+                    <!-- <label for="category">Category</label><input type="text" id="expensecategory" name="category" class="inputfields"> -->
                     <label for="category">Category </label>
                     <select id="expensecategory" class="inputfields" required="">
                         <option value="Choose Category" selected="">Choose Category</option>
@@ -192,12 +197,13 @@
             <h2 class="heading">Recent Transactions</h2>
             <div style="height: 450px;border-radius: 15px;width: 100%;display: flex;flex-direction: column;overflow-y: auto;"
                 id="transactionholder">
-
+                <p id="errmsg" style="color: aliceblue;margin: auto;">No transactions</p>
 
             </div>
         </section>
     </div>
     <script src="./index.js"></script>
+    <script src="./piechart.js"></script>
 </body>
 
 </html>

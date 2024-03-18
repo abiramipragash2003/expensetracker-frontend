@@ -26,10 +26,13 @@ submitsignup.addEventListener('click', async (event) => {
                 body: JSON.stringify(signupdata)
             });
         if (checkResponse.ok) {
-
+            const responseJson = await checkResponse.text(); // Parse response as JSON
+            token = responseJson;
+            localStorage.setItem("token", token)
+            console.log(token);
             submitsignup.innerText = "success"
             submitsignup.style.backgroundColor = "black"
-            window.location.href = "login.html";
+            window.location.href = "index.html";
 
 
         }
