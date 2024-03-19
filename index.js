@@ -84,6 +84,21 @@ async function fetchData(apiUrl) {
             data.expenseTracker.forEach(element => {
                 transactionslist(element)
             })
+            var pieValues = Object.values(data.expenseMap);
+            var pieInfo = Object.keys(data.expenseMap);
+            drawReportPieChart(pieValues, pieInfo, document.getElementById("pieChart"));
+            document.getElementById("incomebtn").addEventListener('click', () => {
+                document.getElementById('gid').innerHTML = '';
+                var pieValues = Object.values(data.incomeMap);
+                var pieInfo = Object.keys(data.incomeMap);
+                drawReportPieChart(pieValues, pieInfo, document.getElementById("pieChart"));
+            })
+            document.getElementById("expensebtn").addEventListener('click', () => {
+                document.getElementById('gid').innerHTML = '';
+                var pieValues = Object.values(data.expenseMap);
+                var pieInfo = Object.keys(data.expenseMap);
+                drawReportPieChart(pieValues, pieInfo, document.getElementById("pieChart"));
+            })
         }
     }
     catch (error) {
@@ -119,6 +134,24 @@ async function fetchReportData(apiUrl) {
             data.expenseTracker.forEach(element => {
                 reporttransactionslist(element)
             })
+            console.log(data)
+            console.log(data.expenseMap)
+            document.getElementById('egid').innerHTML = '';
+            var pieValues = Object.values(data.expenseMap);
+            var pieInfo = Object.keys(data.expenseMap);
+            console.log(pieValues)
+            if (pieValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0) != 0) {
+
+                drawReportPieChart(pieValues, pieInfo, document.getElementById("epieChart"));
+            }
+            document.getElementById('igid').innerHTML = '';
+            var pieValues = Object.values(data.incomeMap);
+            var pieInfo = Object.keys(data.incomeMap);
+            if (pieValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0) != 0) {
+
+                drawReportPieChart(pieValues, pieInfo, document.getElementById("ipieChart"));
+            }
+
         }
         else {
             document.getElementById("reporttransactionholder").innerHTML = "";
@@ -126,8 +159,14 @@ async function fetchReportData(apiUrl) {
             notransactionmsg.id = "reportnotransaction"
             notransactionmsg.innerText = "No Transactions"
             document.getElementById("reporttransactionholder").append(notransactionmsg)
+            // const piemsg=createElement("text")
+            // piemsg.innerText="No"
+            // document.getElementById("epieChart").append(piemsg)
+            document.getElementById('egid').innerHTML = '';
+            document.getElementById('igid').innerHTML = '';
 
         }
+
     }
     catch (error) {
         console.error(error)
@@ -294,6 +333,41 @@ viewreport.addEventListener('click', () => {
         const selectedmonth = monthdropdown.value;
         console.log(selectedmonth)
         fetchReportData(`${url}/month/2024-${selectedmonth}-01`)
+
+    })
+
+});
+
+viewreportnew.addEventListener('click', () => {
+
+    [dashboard, yearreport,datereport].forEach(element => {
+        element.style.backgroundColor = "rgb(43, 42, 42)";
+    });
+
+    [section1, section2, section3, section4, section6].forEach(section => {
+        section.style.display = "none";
+    });
+
+    viewreportnew.style.backgroundColor = "rgb(77, 142, 204)"
+    reporthead.innerText = "Monthly Report"
+    navreport.style.display = "inline"
+    section5.style.display = "inline"
+    buttondate.style.display="none"
+    buttonyear.style.display="none"
+    reportmonth.style.display="inline"
+
+
+    const monthdropdown = document.getElementById("reportmonth")
+    const selectmonth = monthdropdown.value;
+
+    fetchReportData(`${url}/month/2024-${selectmonth}-01`)
+
+    monthdropdown.addEventListener("change", () => {
+        document.getElementById("reporttransactionholder").innerHTML = "";
+        const selectedmonth = monthdropdown.value;
+        console.log(selectedmonth)
+        fetchReportData(`${url}/month/2024-${selectedmonth}-01`)
+
     })
 
 });
@@ -399,7 +473,7 @@ submitincome.addEventListener("click", async (event) => {
     const incomedata =
     {
 
-        userName: username,
+        username: username,
         type: "income",
         incomeCategory: incomecategory.value,
         incomeName: incomenote.value,
@@ -455,7 +529,7 @@ submitexpense.addEventListener("click", async (event) => {
         return;
     }
     const expensedata = {
-        userName: username,
+        username: username,
         type: "expense",
         expenseCategory: expensecategory.value,
         expenseName: expensenote.value,
@@ -572,5 +646,5 @@ totallogout.addEventListener('click', () => {
     // catch (error) {
     //     console.error(error)
     // }
-    window.location.href="login.html"
+    window.location.href = "login.html"
 })

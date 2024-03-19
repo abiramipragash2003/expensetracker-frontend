@@ -6,9 +6,6 @@
     padding: 15px;
     color: aliceblue;
     font-size: large;
-
-    /* border: 5px black solid; */
-
 }
 
 .container1 {
@@ -19,32 +16,15 @@
     padding: 15px;
     color: aliceblue;
     font-size: large;
-
-    /* border: 5px black solid; */
-
 }
 
 
-/* Customize scrollbar appearance (optional) */
-
-
+/* Customize scrollbar appearance  */
 #transactionholderreport::-webkit-scrollbar {
     -ms-overflow-style: none;
     width: 0;
-    /* Hide scrollbar in webkit browsers */
 }
 
-
-/* 
-#piechart {
-    background: conic-gradient(#7573df 10%,
-            #3b2622 90%);
-    height: 250px;
-    width: 250px;
-    border-radius: 50%;
-    margin-left: 50px;
-    margin-top: 30px;
-} */
 
 .btn {
     margin-top: 10px;
@@ -109,7 +89,6 @@
     background-color: rgb(43, 42, 42);
     height: 50px;
     margin-top: 10px;
-    /* margin-left: 15px;  */
     margin-left: auto;
     margin-right: auto;
     color: aliceblue;
