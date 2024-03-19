@@ -472,8 +472,6 @@ submitincome.addEventListener("click", async (event) => {
 
     const incomedata =
     {
-
-        username: username,
         type: "income",
         incomeCategory: incomecategory.value,
         incomeName: incomenote.value,
@@ -529,7 +527,6 @@ submitexpense.addEventListener("click", async (event) => {
         return;
     }
     const expensedata = {
-        username: username,
         type: "expense",
         expenseCategory: expensecategory.value,
         expenseName: expensenote.value,

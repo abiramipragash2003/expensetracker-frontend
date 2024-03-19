@@ -10,7 +10,7 @@ function roundToTwoDecimalPlaces(num) {
 // Function to draw the pie chart
 function drawReportPieChart(data, pieInfo, pieChart) {
   const svg = pieChart
-  const center = { x: -30, y: -30 }; // Center of the pie chart
+  const center = { x: -20, y: -20 }; // Center of the pie chart
   let startAngle = 0;
   if (data.length === 1) {
     data = [100];

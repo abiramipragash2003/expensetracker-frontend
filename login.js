@@ -34,7 +34,7 @@ submitlogin.addEventListener('click', async (event) => {
             token = responseJson;
             localStorage.setItem("token", token)
             console.log(token);
-            submitlogin.innerText = "success"
+            submitlogin.innerText = "Success"
             submitlogin.style.backgroundColor = "black"
             window.location.href = "index.html";
 
@@ -43,6 +43,10 @@ submitlogin.addEventListener('click', async (event) => {
         else {
             submitlogin.innerText = "Unknown Credentials , Please sign up"
             submitlogin.style.backgroundColor = "red"
+            submitlogin.style.width="350px"
+            setTimeout(()=>{
+                window.location.href = "login.html"  
+            },1500)
 
 
         }
