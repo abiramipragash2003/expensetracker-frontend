@@ -10,7 +10,7 @@ signupform.addEventListener('submit', async (event) => {
     const password = document.getElementById("password").value;
     const mailid = document.getElementById("mailid").value;
     const mobileno = document.getElementById("mobileno").value;
-    
+
 
     const signupdata =
     {
@@ -37,17 +37,14 @@ signupform.addEventListener('submit', async (event) => {
             console.log(token);
             submitsignup.innerText = "Success"
             submitsignup.style.backgroundColor = "green"
-            setTimeout(()=>{
-                window.location.href = "index.html"  
-            },1500)
-        
-
-
+            setTimeout(() => {
+                window.location.href = "index.html"
+            }, 1500)
         }
         else {
             submitsignup.innerText = "Not Registered"
             submitsignup.style.backgroundColor = "red"
-            submitsignup.style.width="200px"
+            submitsignup.style.width = "200px"
         }
     }
     catch (error) {
@@ -55,29 +52,27 @@ signupform.addEventListener('submit', async (event) => {
     }
 })
 
-document.getElementById("username").addEventListener('change',async()=>{
+document.getElementById("username").addEventListener('change', async () => {
     const username = document.getElementById("username").value;
     try {
         const checkResponse = await fetch(`${url}/username/${username}`)
-        
+
         if (checkResponse.ok) {
             const responseJson = await checkResponse.text();
-            if(responseJson=="Username already exists") 
-            {
+            if (responseJson == "Username already exists") {
                 submitsignup.style.backgroundColor = "red";
-                submitsignup.style.width="250px"
-                submitsignup.innerText=responseJson
+                submitsignup.style.width = "250px"
+                submitsignup.innerText = responseJson
             }
-            else
-            {
+            else {
                 submitsignup.style.backgroundColor = "green"
-                submitsignup.style.width="200px"
-                submitsignup.innerText=responseJson
-                
+                submitsignup.style.width = "200px"
+                submitsignup.innerText = responseJson
+
             }
-           }
+        }
         else {
-            
+
         }
     }
     catch (error) {
@@ -86,26 +81,25 @@ document.getElementById("username").addEventListener('change',async()=>{
 
 })
 
-document.getElementById("password").addEventListener('click',()=>{
+document.getElementById("password").addEventListener('click', () => {
     submitsignup.style.backgroundColor = "rgb(77, 142, 204)";
-    submitsignup.innerText="Submit"
-    submitsignup.style.width=""
+    submitsignup.innerText = "Submit"
+    submitsignup.style.width = ""
 
 })
 
 
-document.getElementById("mobileno").addEventListener('change',()=>{
+document.getElementById("mobileno").addEventListener('change', () => {
     const mobileno = document.getElementById("mobileno").value;
-    if(!/^\d{10}$/.test(mobileno))
-    {
-        submitsignup.innerText="Enter numbers only for a length of 10"
+    if (!/^\d{10}$/.test(mobileno)) {
+        submitsignup.innerText = "Enter numbers only for a length of 10"
         submitsignup.style.backgroundColor = "red";
-        submitsignup.style.width="450px"
+        submitsignup.style.width = "450px"
     }
-    else{
+    else {
         submitsignup.style.backgroundColor = "rgb(77, 142, 204)";
-        submitsignup.innerText="Submit"
-        submitsignup.style.width=""
+        submitsignup.innerText = "Submit"
+        submitsignup.style.width = ""
     }
 })
 

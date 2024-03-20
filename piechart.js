@@ -37,10 +37,10 @@ function drawReportPieChart(data, pieInfo, pieChart) {
 
     const largeArcFlag = sliceAngle > 180 ? 1 : 0;
     let pathData;
-    
-    
-      pathData = `M${center.x},${center.y} L${startX},${startY} A80,80 0 ${largeArcFlag},1 ${endX},${endY} Z`;
-    
+
+
+    pathData = `M${center.x},${center.y} L${startX},${startY} A80,80 0 ${largeArcFlag},1 ${endX},${endY} Z`;
+
     //the starting point of the path, specified using the 'M' command
     //straight line segment specified using the 'L' command
 

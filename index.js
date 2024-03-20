@@ -159,9 +159,6 @@ async function fetchReportData(apiUrl) {
             notransactionmsg.id = "reportnotransaction"
             notransactionmsg.innerText = "No Transactions"
             document.getElementById("reporttransactionholder").append(notransactionmsg)
-            // const piemsg=createElement("text")
-            // piemsg.innerText="No"
-            // document.getElementById("epieChart").append(piemsg)
             document.getElementById('egid').innerHTML = '';
             document.getElementById('igid').innerHTML = '';
 
@@ -340,7 +337,7 @@ viewreport.addEventListener('click', () => {
 
 viewreportnew.addEventListener('click', () => {
 
-    [dashboard, yearreport,datereport].forEach(element => {
+    [dashboard, yearreport, datereport].forEach(element => {
         element.style.backgroundColor = "rgb(43, 42, 42)";
     });
 
@@ -352,9 +349,9 @@ viewreportnew.addEventListener('click', () => {
     reporthead.innerText = "Monthly Report"
     navreport.style.display = "inline"
     section5.style.display = "inline"
-    buttondate.style.display="none"
-    buttonyear.style.display="none"
-    reportmonth.style.display="inline"
+    buttondate.style.display = "none"
+    buttonyear.style.display = "none"
+    reportmonth.style.display = "inline"
 
 
     const monthdropdown = document.getElementById("reportmonth")
@@ -626,22 +623,5 @@ function transactionslist1(element) {
     Cost.appendChild(cost);
 }
 totallogout.addEventListener('click', () => {
-    // try {
-    //     const checkResponse = fetch(`${url}/auth/logout`,
-    //         {
-    //             method: 'POST',
-    //             mode: 'no-cors'
-    //         });
-    //     if (checkResponse.ok) {
-    //         console.log("logout")
-    //         window.location.href = "login.html"
-    //     }
-    //     else {
-    //         console.log("not logout")
-    //     }
-    // }
-    // catch (error) {
-    //     console.error(error)
-    // }
     window.location.href = "login.html"
 })
