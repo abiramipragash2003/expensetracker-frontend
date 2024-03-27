@@ -57,22 +57,21 @@ document.getElementById("username").addEventListener('change', async () => {
     try {
         const checkResponse = await fetch(`${url}/username/${username}`)
 
-        if (checkResponse.ok) {
+        if (checkResponse.ok) 
+        {
             const responseJson = await checkResponse.text();
-            if (responseJson == "Username already exists") {
+            if (responseJson == "Username already exists")
+            {
                 submitsignup.style.backgroundColor = "red";
                 submitsignup.style.width = "250px"
                 submitsignup.innerText = responseJson
             }
-            else {
+            else 
+            {
                 submitsignup.style.backgroundColor = "green"
                 submitsignup.style.width = "200px"
                 submitsignup.innerText = responseJson
-
             }
-        }
-        else {
-
         }
     }
     catch (error) {

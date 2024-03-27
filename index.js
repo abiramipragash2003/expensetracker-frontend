@@ -27,6 +27,9 @@ const buttonyear = document.createElement("input")
 const token = localStorage.getItem("token")
 const totallogout = document.getElementById("logout")
 const username = decodeToken(token);
+const incomebtn=document.getElementById("incomebtn");
+const expensebtn=document.getElementById("expensebtn")
+
 
 
 document.getElementById("user").innerText = username
@@ -89,12 +92,16 @@ async function fetchData(apiUrl) {
             drawReportPieChart(pieValues, pieInfo, document.getElementById("pieChart"));
             document.getElementById("incomebtn").addEventListener('click', () => {
                 document.getElementById('gid').innerHTML = '';
+                incomebtn.style.backgroundColor="rgb(77, 142, 204)"
+                expensebtn.style.backgroundColor="rgb(27, 26, 26)"
                 var pieValues = Object.values(data.incomeMap);
                 var pieInfo = Object.keys(data.incomeMap);
                 drawReportPieChart(pieValues, pieInfo, document.getElementById("pieChart"));
             })
             document.getElementById("expensebtn").addEventListener('click', () => {
                 document.getElementById('gid').innerHTML = '';
+                incomebtn.style.backgroundColor="rgb(27, 26, 26)"
+                expensebtn.style.backgroundColor="rgb(77, 142, 204)"
                 var pieValues = Object.values(data.expenseMap);
                 var pieInfo = Object.keys(data.expenseMap);
                 drawReportPieChart(pieValues, pieInfo, document.getElementById("pieChart"));
