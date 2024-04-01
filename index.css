@@ -1,139 +1,113 @@
-.container
-{
-    height:80px;
-    width:145px;
+.container {
+    height: 80px;
+    width: 145px;
     background-color: rgb(43, 42, 42);
     border-radius: 20px;
     padding: 15px;
     color: aliceblue;
     font-size: large;
-   
-    /* border: 5px black solid; */
-
 }
-.container1
-{
-    height:50px;
-    width:110px;
+
+.container1 {
+    height: 50px;
+    width: 110px;
     background-color: rgb(22, 22, 22);
     border-radius: 20px;
     padding: 15px;
     color: aliceblue;
     font-size: large;
-   
-    /* border: 5px black solid; */
-
 }
 
 
-/* Customize scrollbar appearance (optional) */
-
-
+/* Customize scrollbar appearance  */
 #transactionholderreport::-webkit-scrollbar {
     -ms-overflow-style: none;
-    width: 0; /* Hide scrollbar in webkit browsers */
+    width: 0;
 }
 
 
-
-#piechart
-{
-    background: conic-gradient(
-                    #7573df 10%,
-                    #3b2622 90%
-                ); 
-    height: 250px; 
-    width: 250px;
-    border-radius: 50%; 
-    margin-left: 50px;
-    margin-top: 30px;
-}
-
-.btn
-{
+.btn {
     margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
-    background-color:rgb(43, 42, 42);
+    background-color: rgb(43, 42, 42);
     color: aliceblue;
     font-size: large;
-    font-family:cursive;
+    font-family: cursive;
     border: none;
 }
-.btn1
-{
+
+.btn1 {
     width: 107px;
     gap: 20px;
     padding: 10px;
     border-radius: 10px;
-    background-color:rgb(43, 42, 42);
+    background-color: rgb(43, 42, 42);
     color: aliceblue;
     font-size: large;
-    font-family:cursive;
+    font-family: cursive;
     border: none;
 }
-.heading
-{
-   color: aliceblue;
-}
-.page
-{
-    background-color:rgb(22, 22, 22);
-}
-.info
-{
-    margin-top: 30px;
-    margin-left: 5px;
-    
-}
-.info1
-{
-    margin-top: 5px;
-    margin-left: 5px;
-    
+
+.heading {
+    color: aliceblue;
 }
 
-#transaction
-{
+.page {
+    background-color: rgb(22, 22, 22);
+}
+
+.info {
+    margin-top: 30px;
+    margin-left: 5px;
+
+}
+
+.info1 {
+    margin-top: 5px;
+    margin-left: 5px;
+
+}
+
+#transaction {
     border-radius: 15px;
-    background-color:rgb(43, 42, 42);
+    background-color: rgb(43, 42, 42);
     height: 50px;
-    margin-top: 10px; 
+    margin-top: 10px;
     color: aliceblue;
     padding: 15px;
-    width: 90%; 
+    width: 90%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap:15px
+    gap: 15px
 }
 
-#reporttransaction
-{
+#reporttransaction {
     border-radius: 15px;
-    background-color:rgb(43, 42, 42);
+    background-color: rgb(43, 42, 42);
     height: 50px;
     margin-top: 10px;
-    /* margin-left: 15px;  */
     margin-left: auto;
     margin-right: auto;
     color: aliceblue;
     padding: 15px;
-    width: 90%; 
+    width: 90%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap:15px
-    
+    gap: 15px
 }
+
 #reporttransactionholder::-webkit-scrollbar {
     width: 5px;
-    background-color:aliceblue ;
+    background-color: aliceblue;
     border-radius: 5px;
 
 }
+
 #transactionholder::-webkit-scrollbar {
     width: 3px;
     background-color: rgb(43, 42, 42);
@@ -141,34 +115,32 @@
 
 }
 
-#reporttransactionholder
-{
-    background-color:rgb(43, 42, 42);
+#reporttransactionholder {
+    background-color: rgb(43, 42, 42);
 }
 
-.inputfields
-{
+.inputfields {
     border-radius: 15px;
     height: 50px;
     border: none;
-    background-color:rgb(22, 22, 22);
+    background-color: rgb(22, 22, 22);
     padding-left: 10px;
     font-size: large;
     font-family: cursive;
     color: aliceblue;
 }
-.msg
-{
+
+.msg {
     display: none;
 }
-#categoryandname
-{
+
+#categoryandname {
     display: flex;
     flex-direction: column;
-    gap:5px;
+    gap: 5px;
 }
-#dateBox
-{
+
+#dateBox {
     display: flex;
     background-color: rgb(27, 26, 26);
     height: 65px;
@@ -177,32 +149,32 @@
     justify-content: center;
     width: 55px;
     border-radius: 10px;
+
 }
-#buttondate
-{
+
+#buttondate {
     margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
-    background-color:rgb(77, 142, 204);
+    background-color: rgb(77, 142, 204);
     color: aliceblue;
     font-size: large;
-    font-family:cursive;
+    font-family: cursive;
     border: none;
 }
 
-#buttonyear
-{
+#buttonyear {
     margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
-    background-color:rgb(77, 142, 204);
+    background-color: rgb(77, 142, 204);
     color: aliceblue;
     font-size: large;
-    font-family:cursive;
+    font-family: cursive;
     border: none;
 }
-#reportnotransaction
-{
+
+#reportnotransaction {
     color: aliceblue;
     margin: auto;
 }
